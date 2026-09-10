@@ -1,237 +1,433 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="git.kaanparty.uk">
-    <meta property="og:description" content="archiving every little retards eh?">
-    <meta property="og:url" content="https://git.kaanparty.uk/">
-    <meta property="og:image" content="https://git.kaanparty.uk/icon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="git.kaanparty.uk">
-    <meta name="twitter:description" content="archiving every little retards eh?">
-    <meta name="twitter:image" content="https://git.kaanparty.uk/icon.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive your worse enemy!</title>
 
-    <title>KAANPARTY.UK</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-
-            background: #050505;
-            color: #d6d6d6;
-
-            font-family: "Courier New", Courier, monospace;
-        }
-
-        .page {
-            width: min(1100px, calc(100% - 30px));
-
-            min-height: 100vh;
-
-            margin: 0 auto;
-
-            padding: 45px 0 35px;
-
-            display: flex;
-            flex-direction: column;
-
-            justify-content: space-between;
-        }
-
-
-        /* =========================
-           ASCII LOGO
-           ========================= */
-
-        .logo-wrapper {
-            width: 100%;
-
-            overflow-x: auto;
-
-            text-align: center;
-        }
-
-        .ascii-logo {
-            display: inline-block;
-
-            margin: 0;
-            padding: 0;
-
-            color: #d6d6d6;
-
-            font-family: "Courier New", Courier, monospace;
-
-            font-size: 8px;
-            line-height: 8px;
-
-            text-align: left;
-
-            white-space: pre;
-        }
-
-
-        /* =========================
-           NAVIGATION
-           ========================= */
-
-        .navigation {
-            text-align: center;
-
-            margin-top: 25px;
-        }
-
-        .navigation a {
-            color: #d6d6d6;
-
-            margin: 0 14px;
-
-            text-decoration: none;
-        }
-
-        .navigation a:hover {
-            color: #ffffff;
-
-            text-decoration: underline;
-        }
-
-
-        /* =========================
-           MOBILE
-           ========================= */
-
-        @media (max-width: 800px) {
-
-            .page {
-                width: calc(100% - 20px);
-
-                padding-top: 25px;
-            }
-
-            .ascii-logo {
-                font-size: 5px;
-
-                line-height: 5px;
-            }
-
-            .navigation a {
-                margin: 0 7px;
-            }
-            
-            p {
-                text-align: center;           
-            }
-        }
-        .archive {
-    width: 100%;
-    max-width: 850px;
-    margin: 30px auto;
+<style>
+* {
+    box-sizing: border-box;
 }
 
-.archive-link {
-    display: block;
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #aaa;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+}
 
-    padding: 15px 18px;
+body {
+    min-height: 100vh;
+}
 
-    border: 1px solid #292929;
+a {
+    color: #aaa;
+    text-decoration: none;
+}
 
-    background: #090909;
+a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
 
+.wrapper {
+    width: min(1000px, calc(100% - 20px));
+    margin: 0 auto;
+}
+
+/* HEADER */
+
+.header {
+    padding: 25px 0 10px;
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    color: #ccc;
+    font-size: 24px;
+    letter-spacing: 3px;
+}
+
+.sublogo {
+    margin-top: 5px;
+    color: #444;
+    font-size: 10px;
+}
+
+/* NAV */
+
+.nav {
+    padding: 9px 0;
+    border-bottom: 1px solid #222;
+}
+
+.nav a {
+    margin-right: 20px;
+    color: #777;
+}
+
+.nav a:hover {
+    color: #ddd;
+}
+
+/* STATUS */
+
+.status {
+    padding: 7px 0;
+
+    color: #444;
+
+    border-bottom: 1px dotted #222;
+
+    font-size: 10px;
+}
+
+.status span {
+    color: #777;
+}
+
+/* MAIN */
+
+.main {
+    padding: 25px 0;
+}
+
+.title {
+    margin-bottom: 12px;
+
+    color: #ccc;
+
+    font-size: 14px;
+}
+
+.title::before {
+    content: "[+] ";
+    color: #555;
+}
+
+.description {
+    max-width: 800px;
+
+    margin-bottom: 25px;
+
+    color: #666;
+
+    line-height: 1.7;
+}
+
+/* SEARCH */
+
+.search {
+    margin-bottom: 25px;
+}
+
+.search input {
+    width: 100%;
+
+    padding: 8px;
+
+    border: 1px solid #222;
+    outline: none;
+
+    background: #050505;
     color: #aaa;
 
-    text-decoration: none;
-
-    text-align: left;
-
-    transition: 0.15s ease;
+    font-family: inherit;
+    font-size: 11px;
 }
 
-.archive-link:hover {
-    background: #111111;
-    border-color: #555;
-    color: #fff;
+.search input:focus {
+    border-color: #444;
 }
 
-.archive-link-title {
-    display: block;
+/* CASE TABLE */
 
-    font-size: 20px;
+.case-header,
+.case {
+    display: grid;
+
+    grid-template-columns:
+        65px
+        1fr
+        145px
+        100px;
 }
 
-.archive-link-description {
-    display: block;
+.case-header {
+    padding: 7px;
 
-    margin-top: 4px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #222;
 
     color: #555;
 
     font-size: 10px;
 }
-    </style>
+
+.case {
+    padding: 9px 7px;
+
+    border-bottom: 1px dotted #1b1b1b;
+
+    background: #010101;
+}
+
+.case:hover {
+    background: #080808;
+}
+
+.case-id {
+    color: #444;
+}
+
+.case-name {
+    color: #aaa;
+}
+
+.case-name a {
+    color: #aaa;
+}
+
+.case-name a:hover {
+    color: white;
+}
+
+.case-category {
+    color: #555;
+}
+
+.case-status {
+    color: #555;
+}
+
+/* WARNING */
+
+.warning {
+    margin-top: 30px;
+
+    padding: 12px;
+
+    border: 1px solid #222;
+
+    color: #555;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.warning strong {
+    color: #777;
+}
+
+/* FOOTER */
+
+.footer {
+    padding: 25px 0 35px;
+
+    border-top: 1px solid #222;
+
+    color: #333;
+
+    font-size: 9px;
+    line-height: 1.8;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .wrapper {
+        width: calc(100% - 14px);
+    }
+
+.logo {
+    width: 100%;
+    text-align: center;
+    overflow-x: auto;
+}
+
+.logo pre {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    color: #ccc;
+    font-family: "Courier New", monospace;
+    font-size: 8px;
+    line-height: 8px;
+    text-align: left;
+    white-space: pre;
+}
+
+
+    .case-header,
+    .case {
+        grid-template-columns:
+            45px
+            1fr
+            90px;
+    }
+
+    .case-header div:nth-child(3),
+    .case div:nth-child(3) {
+        display: none;
+    }
+
+    .case-status {
+        text-align: right;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<div class="page">
+<div class="wrapper">
 
-    <div>
+<header class="header">
 
-        <div class="logo-wrapper">
-
-<pre class="ascii-logo">
-                                                                                                                        
-                                                                                                                                                                
-                                                                                                                                                                
-              ##                                                                                                                                                
-              ##                         ##                                                                                                            ##       
-              ##       ##                ##                                                                      ##                                    ##       
-                       ##                ##                                                                      ##                                    ##       
-  :###:##   ####     #######             ##   ##:   :####     :####    ##.####   ##.###:    :####     ##.####  #######   ##    ##            ##    ##  ##   ##: 
- .#######   ####     #######             ##  ##:    ######    ######   #######   #######:   ######    #######  #######   :##  ##             ##    ##  ##  ##:  
- ###  ###     ##       ##                ##:##:     #:  :##   #:  :##  ###  :##  ###  ###   #:  :##   ###.       ##       ##: ##.            ##    ##  ##:##:   
- ##.  .##     ##       ##                ####        :#####    :#####  ##    ##  ##.  .##    :#####   ##         ##       ###:##             ##    ##  ####     
- ##    ##     ##       ##                #####     .#######  .#######  ##    ##  ##    ##  .#######   ##         ##       .## #              ##    ##  #####    
- ##.  .##     ##       ##                ##.###    ## .  ##  ## .  ##  ##    ##  ##.  .##  ## .  ##   ##         ##        ####.             ##    ##  ##.###   
- ###  ###     ##       ##.        ##     ##  ##:   ##:  ###  ##:  ###  ##    ##  ###  ###  ##:  ###   ##         ##.       :###       ##     ##:  ###  ##  ##:  
- .#######  ########    #####      ##     ##  :##   ########  ########  ##    ##  #######:  ########   ##         #####      ##        ##      #######  ##  :##  
-  :###:##  ########    .####      ##     ##   ###    ###.##    ###.##  ##    ##  ##.###:     ###.##   ##         .####      ##.       ##       ###.##  ##   ### 
-  #.  :##                                                                        ##                                        :##                                  
-  ######                                                                         ##                                       ###:                                  
-  :####:                                                                         ##                                       ###                                   
-                                                                                                                                                                
+    <div class="logo pre">
+<div class="logo">
+<pre>
+ ░▒▓███████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓██████████████▓▒░░▒▓████████▓▒░ 
+░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+ ░▒▓██████▓▒░░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░   
+       ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+       ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░ 
 </pre>
+</div>
 
 
-<p>
-    Hall of Shame archived github edition 
-</p>
 
-<div class="archive">
 
-    <a
-        class="archive-link"
-        href="https://docs.google.com/document/d/1-O5j_1JuYDblBIggV4s8r3i6v41LZ8OVSKmzLS2Mcx0/edit?usp=sharing"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <span class="archive-link-title">
-            Retarded Polish 17 years old dude who cant wash himself 
-        </span>
+    <div class="sublogo">
+we expose we dox!    </div>
 
-        <span class="archive-link-description">
-           Archived trough Google Docs :D
-        </span>
-    </a>
+</header>
+
+
+
+
+    <main class="main">
+
+        <div class="title">
+            Terms of Service
+        </div>
+
+        <div class="description">
+
+Welcome to hell!
+
+<br><br>
+
+We archive public exposes and documented cases using information that can be responsibly verified.
+
+Doxing, private personal information, credentials, and other sensitive data are not supposed to be exposed unless if i say so. ¯\_(ツ)_/¯
+
+<br><br>
+
+Information is archived with timestamps and source references wherever possible. Have fun!
+
+
+        <div class="search">
+
+            <input
+                id="search"
+                type="text"
+                placeholder="search database..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="case-header">
+
+            <div>ID</div>
+            <div>CASE</div>
+            <div>CATEGORY</div>
+            <div>STATUS</div>
+
+        </div>
+
+
+        <div id="cases">
+
+            <div
+                class="case"
+                data-search="example case online misconduct"
+            >
+
+                <div class="case-id">
+                    #Poland
+                </div>
+
+                <div class="case-name">
+                    <a href="https://docs.google.com/document/d/1-O5j_1JuYDblBIggV4s8r3i6v41LZ8OVSKmzLS2Mcx0/edit?usp=sharing">
+                        Annaisa Veltoire Corovance (Google Docs)
+                    </a>
+                </div>
+
+                <div class="case-category">
+                    Zoophile / Larp 
+                </div>
+
+                <div class="case-status">
+                    Archived
+                </div>
+
+            </div>
+
+
+        <div class="warning">
+
+            <strong>[!] ARCHIVE NOTICE</strong>
+
+            <br><br>
+
+The website is only uploaded on Github Pages so dont expect to see much perhaps good stuff! unless github says fuck you.
+
+
+        </div>
+
+    </main>
 
 </div>
+
+
+<script>
+
+const search = document.getElementById("search");
+const cases = document.querySelectorAll(".case");
+
+search.addEventListener("input", () => {
+
+    const query = search.value
+        .toLowerCase()
+        .trim();
+
+    cases.forEach(item => {
+
+        const text =
+            item.innerText.toLowerCase() +
+            " " +
+            (item.dataset.search || "").toLowerCase();
+
+        item.style.display =
+            !query || text.includes(query)
+                ? "grid"
+                : "none";
+
+    });
+
+});
+
+</script>
+
+</body>
 </html>
